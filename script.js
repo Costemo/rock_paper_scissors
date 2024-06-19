@@ -47,7 +47,7 @@ function playRound() {
 } 
 }
 
-function gameScore() {
+function playGame() {
     let playerScore = 0;
     let computerScore = 0;
 
@@ -77,4 +77,4 @@ function gameScore() {
 } 
 
 
-console.log(gameScore())
+console.log(playGame())
