@@ -7,7 +7,7 @@ function getComputerChoice() {
     let random = Math.floor(Math.random() * choices.length);
     return choices[random];
 }
-console.log("Computer", getComputerChoice())
+
 
 // prompt a choice
 // validate choice
@@ -20,5 +20,26 @@ function getHumanChoice() {
     }
     return choice;
 }
-console.log("PLayer", getHumanChoice())
 
+
+function playRound() {
+    let humanChoice = getHumanChoice();
+    let computerChoice = getComputerChoice();
+
+    console.log("Player choses", humanChoice);
+    console.log("Computer choses", computerChoice);
+    
+
+    if (humanChoice === computerChoice) {
+        console.log(`It's a tie! You both chose ${humanChoice}.`);
+    }
+    else if ((humanChoice === "rock" && computerChoice === "scissors") || (humanChoice === "paper" && computerChoice === "rock") || (humanChoice === "scissors" && computerChoice === "paper")) {
+        console.log(`You Win! ${humanChoice} beats ${computerChoice}.`);
+        
+    }
+    else {
+        console.log(`You lose! ${computerChoice} beats ${humanChoice}!`);
+       
+} 
+}
+console.log(playRound())
