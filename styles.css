@@ -1,0 +1,25 @@
+* {
+   
+}
+
+h1,h2 {
+    text-align: center;
+    background-color: lightblue;
+}
+.scores {
+    text-align: center;
+}
+.chose {
+    text-align: center;
+}
+button {
+    display: block;
+    margin: auto;
+
+}
+.buttons {
+    display: flex;
+}
+#texth3 {
+    text-align: center;
+}

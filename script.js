@@ -1,6 +1,6 @@
-// define choices
-// get random choice
-// return choice
+const choices = ["rock", "paper", "scissors"];
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
     let choices = ["rock", "paper", "scissors"];
@@ -8,44 +8,110 @@ function getComputerChoice() {
     return choices[random];
 }
 
+const rockBtn = document.querySelector("#rock");
+rockBtn.addEventListener("click", () => {
+    getPlayerChoice("rock");
+});
 
-// prompt a choice
-// validate choice
-// return choice
+const paperBtn = document.querySelector("#paper");
+paperBtn.addEventListener("click", () => {
+    getPlayerChoice("paper");
+});
 
-function getHumanChoice() {
-    let choice = prompt("Please pick rock, paper, or scissors").toLowerCase();
-    while (choice !== 'rock' && choice !== 'paper' && choice !== 'scissors') {
-        choice = prompt("Please pick rock, paper, or scissors").toLowerCase();
-    }
-    return choice;
-}
+const scissorsBtn = document.querySelector("#scissors");
+scissorsBtn.addEventListener("click", () => {
+    getPlayerChoice("scissors");
+});
 
+function getPlayerChoice(choice) {
+    let outcome = playRound(choice);
+    updateScore(outcome);
+};
 
-function playRound() {
-    let humanChoice = getHumanChoice();
+function playRound(humanChoice) {
+   let list = document.querySelector("#texth3");
     let computerChoice = getComputerChoice();
-    
 
-    console.log("Player choses", humanChoice);
-    console.log("Computer choses", computerChoice);
+    let listItem = document.createElement("li");
+
+    const humanDisplay = document.createElement("span");
+    humanDisplay.textContent = `Player choses ${humanChoice} | `;
+       
+    const computerDisplay = document.createElement("span");
+    computerDisplay.textContent = `Computer choses ${computerChoice}`;
+
+    list.appendChild(listItem);
+    listItem.appendChild(humanDisplay);
+    listItem.appendChild(computerDisplay);
     
 
     if (humanChoice === computerChoice) {
-        console.log(`It's a tie! You both chose ${humanChoice}.`);
+        const list = document.querySelector("#list");
+        const choiceTie = document.createElement("li");
+        choiceTie.textContent = `It's a tie! You both chose ${humanChoice}.`;
         return 'tie';
+        
     }
     else if ((humanChoice === "rock" && computerChoice === "scissors") || (humanChoice === "paper" && computerChoice === "rock") || (humanChoice === "scissors" && computerChoice === "paper")) {
-        console.log(`You Win! ${humanChoice} beats ${computerChoice}.`);
+        const list = document.querySelector("#list");
+        const choiceWin = document.createElement("li");
+        choiceWin.textContent = `You Win! ${humanChoice} beats ${computerChoice}.`;
         return 'win';
         
     }
     else {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}!`);
+        const list = document.querySelector("#list");
+        const choiceLose = document.createElement("li");
+        choiceLose.textContent = `You lose! ${computerChoice} beats ${humanChoice}!`;
         return 'lose';
        
 } 
 }
+
+
+
+function updateScore(outcome) {
+    let playerScoreElement = document.querySelector("#player-score");
+    let computerScoreElement = document.querySelector("#computer-score");
+
+    if (outcome === "win") {
+        playerScore++;
+    }
+    else if (outcome === "lose") {
+        computerScore++;
+    }
+    playerScoreElement.textContent = playerScore;
+    computerScoreElement.textContent = computerScore;
+
+    if (playerScore +computerScore === 5){
+        endGame();
+    }
+}
+
+function endGame() {
+    const scoreMessage = document.querySelector("#score-message");
+
+    if (playerScore > computerScore) {
+        scoreMessage.textContent = "Congratulations! You win the game!";
+    } else if (computerScore > playerScore) {
+        scoreMessage.textContent = "Computer wins the game!";
+    } else {
+        scoreMessage.textContent = "It's a tie game!";
+    }
+
+    playerScore = 0;
+    computerScore = 0;
+}
+
+
+
+
+const scoreh2 = document.querySelector("#score");
+scoreh2.appendChild(playerScoreElement);
+scoreh2.appendChild(computerScoreElement);
+
+
+
 
 function playGame() {
     let playerScore = 0;
@@ -75,6 +141,8 @@ function playGame() {
         }
 
 } 
+
+
 
 
 console.log(playGame())
